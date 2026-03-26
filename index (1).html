@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FACE ROAST 3000 🔥</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Black+Han+Sans&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- BACKGROUND CHAOS -->
+  <div class="bg-noise"></div>
+  <div class="floating-emojis" id="floatingEmojis"></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-tag">⚠️ EXPERIMENTAL AI TECH ⚠️</div>
+    <h1 class="main-title">
+      <span class="glitch-text" data-text="FACE ROAST">FACE ROAST</span>
+      <span class="title-3000">3000</span>
+    </h1>
+    <p class="subtitle">≫ AI-POWERED PERSONALITY DESTRUCTION™ ≪</p>
+    <div class="header-badges">
+      <span class="badge">🧠 NEURAL VIBES</span>
+      <span class="badge">📡 100% REAL TECH</span>
+      <span class="badge">✅ FDA APPROVED*</span>
+    </div>
+  </header>
+
+  <!-- MAIN APP -->
+  <main class="app-container">
+
+    <!-- LEFT: CAMERA ZONE -->
+    <section class="camera-zone">
+      <div class="camera-label">[ MUKA LO DISINI ]</div>
+      <div class="video-wrapper" id="videoWrapper">
+        <div class="camera-placeholder" id="cameraPlaceholder">
+          <div class="placeholder-icon">📷</div>
+          <p>kamera belum nyala bro</p>
+        </div>
+        <video id="webcam" autoplay playsinline muted></video>
+        <canvas id="faceCanvas"></canvas>
+        <div class="scan-line" id="scanLine"></div>
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+        <!-- Analyzing overlay -->
+        <div class="analyzing-overlay" id="analyzingOverlay">
+          <div class="analyzing-text">ANALYZING...</div>
+          <div class="analyzing-bar"><div class="analyzing-fill" id="analyzingFill"></div></div>
+          <div class="analyzing-steps" id="analyzingSteps"></div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="btn-group">
+        <button class="btn btn-start" id="startBtn" onclick="startCamera()">
+          📷 START CAMERA
+        </button>
+        <button class="btn btn-analyze" id="analyzeBtn" onclick="analyzeface()" disabled>
+          🔥 ANALYZE FACE
+        </button>
+      </div>
+    </section>
+
+    <!-- RIGHT: RESULT ZONE -->
+    <section class="result-zone" id="resultZone">
+      <div class="result-idle" id="resultIdle">
+        <div class="idle-icon">🤖</div>
+        <p class="idle-text">SISTEM MENUNGGU<br/>KORBAN BERIKUTNYA</p>
+        <div class="idle-dots"><span>.</span><span>.</span><span>.</span></div>
+      </div>
+
+      <div class="result-content" id="resultContent" style="display:none">
+        <div class="result-header">ANALISIS SELESAI 🎯</div>
+
+        <div class="result-name" id="resultName"></div>
+
+        <div class="stats-grid" id="statsGrid"></div>
+
+        <div class="roast-box" id="roastBox"></div>
+
+        <div class="verdict-box" id="verdictBox"></div>
+
+        <div class="share-line">
+          <button class="btn btn-again" onclick="tryAgain()">🔄 TRY AGAIN</button>
+          <button class="btn btn-share" onclick="copyResult()">📋 COPY ROAST</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>*tidak benar-benar FDA approved. AI ini tidak tau apa-apa tentang kamu. tapi tetep bener kan? 😏</p>
+    <p>FACE ROAST 3000 — zero physical insults, 100% vibes destruction</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
