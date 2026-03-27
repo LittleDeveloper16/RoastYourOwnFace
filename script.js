@@ -1,9 +1,14 @@
 const video = document.getElementById("webcam");
 const canvas = document.getElementById("faceCanvas");
 const upload = document.getElementById("upload");
-const resultText = document.getElementById("resultText");
+const resultContent = document.getElementById("resultContent");
 
 let stream = null;
+
+// RANDOM
+function rand() {
+  return Math.floor(Math.random() * 100);
+}
 
 // CAMERA
 async function startCamera() {
@@ -11,7 +16,7 @@ async function startCamera() {
     stream = await navigator.mediaDevices.getUserMedia({ video: true });
     video.srcObject = stream;
     video.classList.add("active");
-  } catch (e) {
+  } catch {
     alert("Kamera error 😭");
   }
 }
@@ -48,7 +53,7 @@ upload.addEventListener("change", function () {
   }
 });
 
-// ROAST SYSTEM
+// ROAST FINAL
 function analyze() {
 
   if (!video.src && !video.srcObject) {
@@ -60,70 +65,91 @@ function analyze() {
     "muka kayak lagi mikir tapi kosong",
     "aura bangun tidur 3 hari",
     "ekspresi default NPC pasar",
-    "muka buffering 240p",
-    "kayak belum login ke kehidupan"
+    "muka buffering 240p"
   ];
 
   const vibe = [
     "vibes nunggu diskon seumur hidup",
     "energi sok sibuk padahal rebahan",
-    "aura 'ntar ya' tapi ga pernah",
-    "vibes pengen berubah tapi mager",
-    "energi anak warnet 2008"
+    "aura 'ntar ya' tapi ga pernah"
   ];
 
   const effort = [
     "niat ada, hasil nihil",
     "usaha 10%, ngeluh 90%",
-    "planning banyak, action nol",
-    "semangat awal doang",
-    "mulai bagus, selesai engga"
+    "planning banyak, action nol"
   ];
 
   const rare = [
     "ini muka side character episode 1",
-    "kayak karakter filler anime",
-    "vibes orang yang lupa tujuan hidup",
-    "energi manusia versi trial",
-    "ini build gagal di awal game"
+    "karakter filler anime",
+    "build gagal di awal game"
   ];
 
   const ulti = [
     "KESIMPULAN: LU NPC PREMIUM 🗿",
     "FINAL: OTAK LU MASIH LOADING 🤡",
-    "VERDICT: BUTUH PATCH UPDATE KEHIDUPAN",
-    "KESIMPULAN: KARAKTER LU BELUM KE-UNLOCK",
-    "FINAL BOSS: LU ITU BACKGROUND CHARACTER",
-    "STATUS: MASIH EARLY ACCESS MANUSIA 😭"
+    "FINAL BOSS: LU ITU BACKGROUND CHARACTER"
   ];
 
-  resultText.innerHTML = "SCANNING...";
+  resultContent.innerHTML = `<div class="idle-text">SCANNING...</div>`;
 
   setTimeout(() => {
 
-    const data = [
-      face[Math.floor(Math.random() * face.length)],
-      vibe[Math.floor(Math.random() * vibe.length)],
-      effort[Math.floor(Math.random() * effort.length)],
-      rare[Math.floor(Math.random() * rare.length)]
-    ];
-
+    const r1 = face[Math.floor(Math.random() * face.length)];
+    const r2 = vibe[Math.floor(Math.random() * vibe.length)];
+    const r3 = effort[Math.floor(Math.random() * effort.length)];
+    const r4 = rare[Math.floor(Math.random() * rare.length)];
     const final = ulti[Math.floor(Math.random() * ulti.length)];
 
-    // CLEAR
-    resultText.innerHTML = "";
+    resultContent.innerHTML = `
+      <div class="result-content">
 
-    // TAMBAH 4 BARIS (ANTI ILANG)
-    data.forEach(text => {
-      const div = document.createElement("div");
-      div.textContent = "➤ " + text;
-      resultText.appendChild(div);
-    });
+        <div class="result-header">HASIL ANALISIS</div>
 
-    // ULTI
-    const end = document.createElement("div");
-    end.innerHTML = "<br>💀 <b>" + final + "</b>";
-    resultText.appendChild(end);
+        <div class="result-name">MANUSIA RANDOM</div>
+
+        <div class="stats-grid">
+
+          <div class="stat-item">
+            <span class="stat-label">KEPERCAYAAN DIRI</span>
+            <div class="stat-value">${rand()}%</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:${rand()}%"></div></div>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-label">KECERDASAN</span>
+            <div class="stat-value">${rand()}%</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:${rand()}%"></div></div>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-label">USAHA HIDUP</span>
+            <div class="stat-value">${rand()}%</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:${rand()}%"></div></div>
+          </div>
+
+          <div class="stat-item">
+            <span class="stat-label">AURA UTAMA</span>
+            <div class="stat-value">${rand()}%</div>
+            <div class="stat-bar"><div class="stat-bar-fill" style="width:${rand()}%"></div></div>
+          </div>
+
+        </div>
+
+        <div class="roast-box">
+          <div class="roast-line"><span class="roast-arrow">➤</span>${r1}</div>
+          <div class="roast-line"><span class="roast-arrow">➤</span>${r2}</div>
+          <div class="roast-line"><span class="roast-arrow">➤</span>${r3}</div>
+          <div class="roast-line"><span class="roast-arrow">➤</span>${r4}</div>
+        </div>
+
+        <div class="verdict-box">
+          💀 ${final}
+        </div>
+
+      </div>
+    `;
 
   }, 1200);
 }
