@@ -1,35 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FACE ROAST 3000</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>FACE ROAST 3000 💀</h1>
 
-<div class="container">
-
-  <!-- PREVIEW AREA -->
-  <div class="box">
-    <video id="video" autoplay playsinline></video>
-    <img id="preview" />
-  </div>
-
-  <!-- BUTTONS -->
-  <div class="controls">
-    <button onclick="startCamera()">🎥 Kamera</button>
-    <button onclick="takePhoto()">📸 Ambil Foto</button>
-    <input type="file" id="upload" accept="image/*">
-    <button onclick="analyze()">🔥 Roast Gw</button>
-  </div>
-
-  <!-- RESULT -->
-  <p id="result">Klik dulu, jangan bengong 😴</p>
-
+<div class="box">
+  <video id="video" autoplay playsinline></video>
+  <img id="preview">
 </div>
+
+<div class="controls">
+  <button onclick="startCamera()">🎥 Kamera</button>
+  <button onclick="takePhoto()">📸 Ambil Foto</button>
+  <input type="file" id="upload" accept="image/*">
+  <button onclick="analyze()">🔥 Roast Gw</button>
+</div>
+
+<p id="result">Klik dulu, jangan bengong 😴</p>
 
 <script src="script.js"></script>
 </body>
