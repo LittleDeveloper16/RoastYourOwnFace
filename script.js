@@ -5,7 +5,7 @@ const result = document.getElementById("result");
 
 let stream;
 
-// kamera
+// START CAMERA
 async function startCamera() {
   try {
     stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -13,12 +13,14 @@ async function startCamera() {
 
     video.style.display = "block";
     preview.style.display = "none";
-  } catch {
-    alert("Kamera error 😭");
+
+  } catch (err) {
+    alert("Kamera error / ditolak 😭");
+    console.log(err);
   }
 }
 
-// ambil foto
+// CAPTURE FOTO
 function takePhoto() {
   if (!video.srcObject) {
     alert("Nyalain kamera dulu 😑");
@@ -38,9 +40,10 @@ function takePhoto() {
   video.style.display = "none";
 }
 
-// upload
+// UPLOAD FOTO
 upload.addEventListener("change", function () {
   const file = this.files[0];
+
   if (file) {
     preview.src = URL.createObjectURL(file);
 
@@ -49,20 +52,31 @@ upload.addEventListener("change", function () {
   }
 });
 
-// roast
+// ANALYZE
 function analyze() {
+
+  if (!preview.src && !video.srcObject) {
+    alert("Pilih foto dulu 😑");
+    return;
+  }
+
   const roast = [
     "NPC pasar minggu 100%",
     "vibes capek padahal ga ngapa-ngapain",
-    "energi anak warnet",
-    "main character gagal",
+    "energi anak warnet 2008",
+    "main character gagal total",
     "aura nunggu diskon",
+    "vibes tukang galon galau",
     "niat ada, usaha hilang",
+    "energi bangun tidur 3 hari",
+    "muka kayak mikir tapi kosong",
+    "aura 'ntar ya' tapi ga pernah"
   ];
 
-  result.innerText = "Analyzing...";
+  result.innerText = "Analyzing... 🧠";
 
   setTimeout(() => {
-    result.innerText = roast[Math.floor(Math.random()*roast.length)];
-  }, 1000);
+    const random = roast[Math.floor(Math.random() * roast.length)];
+    result.innerText = random;
+  }, 1200);
 }
