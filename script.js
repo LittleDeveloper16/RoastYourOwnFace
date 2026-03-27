@@ -5,23 +5,18 @@ const resultText = document.getElementById("resultText");
 
 let stream = null;
 
-// =======================
-// START CAMERA
-// =======================
+// CAMERA
 async function startCamera() {
   try {
     stream = await navigator.mediaDevices.getUserMedia({ video: true });
     video.srcObject = stream;
     video.classList.add("active");
-  } catch (err) {
-    alert("Kamera error / ditolak 😭");
-    console.log(err);
+  } catch (e) {
+    alert("Kamera error 😭");
   }
 }
 
-// =======================
-// CAPTURE FOTO
-// =======================
+// CAPTURE
 function takePhoto() {
   if (!video.srcObject) {
     alert("Nyalain kamera dulu 😑");
@@ -34,23 +29,18 @@ function takePhoto() {
 
   ctx.drawImage(video, 0, 0);
 
-  // stop camera
-  stream.getTracks().forEach(track => track.stop());
+  stream.getTracks().forEach(t => t.stop());
 
   video.srcObject = null;
   video.src = canvas.toDataURL("image/png");
 }
 
-// =======================
-// UPLOAD FOTO
-// =======================
+// UPLOAD
 upload.addEventListener("change", function () {
   const file = this.files[0];
 
   if (file) {
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop());
-    }
+    if (stream) stream.getTracks().forEach(t => t.stop());
 
     video.srcObject = null;
     video.src = URL.createObjectURL(file);
@@ -58,13 +48,11 @@ upload.addEventListener("change", function () {
   }
 });
 
-// =======================
-// ROAST SYSTEM (ADVANCED)
-// =======================
+// ROAST SYSTEM
 function analyze() {
 
   if (!video.src && !video.srcObject) {
-    alert("Masukin muka dulu bego 😭");
+    alert("Masukin muka dulu 😭");
     return;
   }
 
@@ -109,23 +97,33 @@ function analyze() {
     "STATUS: MASIH EARLY ACCESS MANUSIA 😭"
   ];
 
-  resultText.innerHTML = "SCANNING WAJAH LU...";
+  resultText.innerHTML = "SCANNING...";
 
   setTimeout(() => {
 
-    const r1 = face[Math.floor(Math.random() * face.length)];
-    const r2 = vibe[Math.floor(Math.random() * vibe.length)];
-    const r3 = effort[Math.floor(Math.random() * effort.length)];
-    const r4 = rare[Math.floor(Math.random() * rare.length)];
+    const data = [
+      face[Math.floor(Math.random() * face.length)],
+      vibe[Math.floor(Math.random() * vibe.length)],
+      effort[Math.floor(Math.random() * effort.length)],
+      rare[Math.floor(Math.random() * rare.length)]
+    ];
+
     const final = ulti[Math.floor(Math.random() * ulti.length)];
 
-    resultText.innerHTML = `
-      ➤ ${r1} <br>
-      ➤ ${r2} <br>
-      ➤ ${r3} <br>
-      ➤ ${r4} <br><br>
-      💀 <b>${final}</b>
-    `;
+    // CLEAR
+    resultText.innerHTML = "";
+
+    // TAMBAH 4 BARIS (ANTI ILANG)
+    data.forEach(text => {
+      const div = document.createElement("div");
+      div.textContent = "➤ " + text;
+      resultText.appendChild(div);
+    });
+
+    // ULTI
+    const end = document.createElement("div");
+    end.innerHTML = "<br>💀 <b>" + final + "</b>";
+    resultText.appendChild(end);
 
   }, 1200);
 }
