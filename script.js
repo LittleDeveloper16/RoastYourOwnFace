@@ -107,11 +107,7 @@ function analyze() {
 
         <div class="result-header">HASIL ANALISIS</div>
 
-        <div class="result-name">MANUSIA RANDOM</div>
-        <div class="result-name">NPC TERMINAL</div>
-        <div class="result-name">KESET TOILET BASECAMP</div>
-        <div class="result-name">SAMSAK KMA</div>
-        <div class="result-name">CALON PENGHUNI SURGA</div>
+        <div class="result-name">NO COMMENT ANE</div>
 
         <div class="stats-grid">
 
