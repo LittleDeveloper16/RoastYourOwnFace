@@ -1,22 +1,18 @@
-const video = document.getElementById("video");
-const preview = document.getElementById("preview");
+const video = document.getElementById("webcam");
+const canvas = document.getElementById("faceCanvas");
 const upload = document.getElementById("upload");
-const result = document.getElementById("result");
+const resultText = document.getElementById("resultText");
 
-let stream;
+let stream = null;
 
 // START CAMERA
 async function startCamera() {
   try {
     stream = await navigator.mediaDevices.getUserMedia({ video: true });
     video.srcObject = stream;
-
-    video.style.display = "block";
-    preview.style.display = "none";
-
+    video.classList.add("active");
   } catch (err) {
-    alert("Kamera error / ditolak 😭");
-    console.log(err);
+    alert("Kamera error / ditolak");
   }
 }
 
@@ -27,56 +23,39 @@ function takePhoto() {
     return;
   }
 
-  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
-  const ctx = canvas.getContext("2d");
   ctx.drawImage(video, 0, 0);
-
-  preview.src = canvas.toDataURL("image/png");
-
-  preview.style.display = "block";
-  video.style.display = "none";
+  video.srcObject = null;
+  video.src = canvas.toDataURL("image/png");
 }
 
 // UPLOAD FOTO
 upload.addEventListener("change", function () {
   const file = this.files[0];
-
   if (file) {
-    preview.src = URL.createObjectURL(file);
-
-    preview.style.display = "block";
-    video.style.display = "none";
+    video.srcObject = null;
+    video.src = URL.createObjectURL(file);
+    video.classList.add("active");
   }
 });
 
-// ANALYZE
+// ROAST
 function analyze() {
-
-  if (!preview.src && !video.srcObject) {
-    alert("Pilih foto dulu 😑");
-    return;
-  }
-
   const roast = [
     "NPC pasar minggu 100%",
-    "vibes capek padahal ga ngapa-ngapain",
-    "energi anak warnet 2008",
-    "main character gagal total",
-    "aura nunggu diskon",
-    "vibes tukang galon galau",
-    "niat ada, usaha hilang",
+    "muka kayak lagi loading tapi ga pernah selesai",
     "energi bangun tidur 3 hari",
-    "muka kayak mikir tapi kosong",
-    "aura 'ntar ya' tapi ga pernah"
+    "niat ada, hasil nihil",
+    "vibes nunggu diskon seumur hidup",
+    "main character gagal total"
   ];
 
-  result.innerText = "Analyzing... 🧠";
+  resultText.innerText = "ANALYZING...";
 
   setTimeout(() => {
-    const random = roast[Math.floor(Math.random() * roast.length)];
-    result.innerText = random;
+    resultText.innerText = roast[Math.floor(Math.random()*roast.length)];
   }, 1200);
 }
