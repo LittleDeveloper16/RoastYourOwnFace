@@ -3,32 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>FACE ROAST 3000</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>💀 FACE ROAST 3000 💀</h1>
+<div class="bg-noise"></div>
 
-<div class="container">
+<header class="site-header">
+  <div class="header-tag">SYSTEM ONLINE</div>
 
-  <div class="box">
-    <video id="video" autoplay playsinline></video>
-    <img id="preview">
+  <h1 class="main-title">
+    <span class="glitch-text" data-text="FACE">FACE</span>
+    <span class="glitch-text" data-text="ROAST">ROAST</span>
+    <span class="title-3000">3000</span>
+  </h1>
+
+  <div class="subtitle">AI NGADI-NGADI DETECTOR</div>
+</header>
+
+<div class="app-container">
+
+  <!-- CAMERA -->
+  <div class="camera-zone">
+
+    <div class="camera-label">INPUT WAJAH</div>
+
+    <div class="video-wrapper">
+
+      <video id="webcam" autoplay playsinline></video>
+      <canvas id="faceCanvas"></canvas>
+
+      <div class="scan-line"></div>
+
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-start" onclick="startCamera()">START</button>
+      <button class="btn" onclick="takePhoto()">CAPTURE</button>
+      <button class="btn btn-analyze" onclick="analyze()">ROAST</button>
+    </div>
+
+    <input type="file" id="upload" accept="image/*">
+
   </div>
 
-  <div class="controls">
-    <button onclick="startCamera()">🎥 Kamera</button>
-    <button onclick="takePhoto()">📸 Ambil Foto</button>
-    <br>
-    <input type="file" id="upload" accept="image/*">
-    <br>
-    <button onclick="analyze()">🔥 Roast Gw</button>
+  <!-- RESULT -->
+  <div class="result-zone">
+    <div id="resultText" class="idle-text">
+      MENUNGGU KORBAN...
+    </div>
   </div>
 
 </div>
-
-<p id="result">Sistem siap... korban berikutnya 😈</p>
 
 <script src="script.js"></script>
 </body>
